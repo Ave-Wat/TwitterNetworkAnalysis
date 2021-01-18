@@ -3,6 +3,7 @@ tweepy/
 
 #ignore venv folder
 venv/
+env/
 
 #ignore tokens.py file (auth tokens)
 tokens.py
