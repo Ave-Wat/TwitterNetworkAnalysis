@@ -1,0 +1,8 @@
+#ignore tweepy folder
+tweepy
+
+#ignore venv folder
+venv
+
+#ignore tokens.py file (auth tokens)
+tokens.py
