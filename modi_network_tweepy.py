@@ -23,10 +23,10 @@ def get_friends(user):
     friend_ids = []
     i = 0
 
-    cursor = limit_handled(tweepy.Cursor(api.friends_ids, user_id = user))
-    for friend in cursor.pages():
-        if i < 2:
-            print(friend.user_id)
+    cursor = limit_handled(tweepy.Cursor(api.friends(user)).items())
+    for friend in cursor:
+        if i < 10:
+            print(friend.screen_name)
         else:
             break
         i = i + 1
