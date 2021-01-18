@@ -21,7 +21,6 @@ def limit_handled(cursor):
 
 def get_friends(user):
     friend_ids = []
-<<<<<<< HEAD
     i = 0
     for friend in limit_handled(tweepy.Cursor(api.friends(user_id = user)).items()):
         if i < 2:
@@ -29,10 +28,6 @@ def get_friends(user):
         else:
             break
         i = i + 1
-=======
-    for follower in limit_handled(tweepy.Cursor(api.friends).items()):
-
->>>>>>> 8211139870abc711b58d1bf8229ecf219a1ebd4b
 
 user = 'narendramodi'
 get_friends(user)
