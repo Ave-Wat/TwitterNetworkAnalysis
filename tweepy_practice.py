@@ -1,5 +1,9 @@
 #https://realpython.com/twitter-bot-python-tweepy/
 #https://docs.tweepy.org/en/v3.4.0/install.html
+# link on handling rate limits with cursors:
+# https://github.com/tweepy/tweepy/blob/master/docs/code_snippet.rst#pagination
+#tweepy docs: https://docs.tweepy.org/en/latest/index.html
+
 import tweepy
 import tokens
 

@@ -8,12 +8,6 @@ auth.set_access_token(tokens.access_token, tokens.access_token_secret)
 api = tweepy.API(auth)
 modi = 'narendramodi'
 
-# link on handling rate limits with cursors:
-# https://github.com/tweepy/tweepy/blob/master/docs/code_snippet.rst#pagination
-
-#tweepy docs:
-# https://docs.tweepy.org/en/latest/index.html
-
 def limit_handled(cursor):
     while True:
         try:
@@ -24,7 +18,7 @@ def limit_handled(cursor):
 def get_friends(user):
     #friend_ids = []
     i=0
-    #limits us at 300; have to wait 15 mins
+    #limits us at 300; have to wait 15 mins; to avoid for practice, uncomment if/break with int i
     for friend in limit_handled(tweepy.Cursor(api.friends, screen_name=user).items()):
         print(friend.screen_name)
         # i+=1
