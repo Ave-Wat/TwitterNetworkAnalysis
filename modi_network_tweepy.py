@@ -9,17 +9,17 @@ api = tweepy.API(auth)
 # link on handling rate limits with cursors:
 # https://github.com/tweepy/tweepy/blob/master/docs/code_snippet.rst#pagination
 
-cursor = tweepy.Cursor(api.followers_ids, id = 'narendramodi')
+def limit_handled(cursor):
+    while True:
+        try:
+            yield next(cursor)
+        except tweepy.RateLimitError:
+            time.sleep(15 * 60)
 
-i = 0
-modi_following = []
-for page in cursor.pages():
-     ids.append(page)
+def get_friends(user):
+    friend_ids = []
+    for follower in limit_handled(tweepy.Cursor(api.friends).items()):
+        
 
-for tweet in public_tweets:
-    if i > 2:
-        break
-    else:
-        i = i + 1
-        print(tweet.text)
-        print()
+user = api.get_user('narendramodi')
+get_friends(user)
