@@ -24,6 +24,7 @@ def limit_handled(cursor):
 def get_friends(user):
     #friend_ids = []
     i=0
+    #limits us at 300; have to wait 15 mins
     for friend in limit_handled(tweepy.Cursor(api.friends, screen_name=user).items()):
         print(friend.screen_name)
         # i+=1
