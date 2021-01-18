@@ -10,3 +10,4 @@ config.Output = "practice.csv"
 twint.run.Search(config)
 
 #having an error when running the code: https://github.com/twintproject/twint/issues/604
+#error resolved by downloading from git

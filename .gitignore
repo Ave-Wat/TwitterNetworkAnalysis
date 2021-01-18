@@ -17,5 +17,5 @@ tokens.py
 #ignore
 __pycache__/
 
-#ignore
+#ignore for practice files
 practice.csv
