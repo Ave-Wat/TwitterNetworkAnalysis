@@ -9,6 +9,9 @@ api = tweepy.API(auth)
 # link on handling rate limits with cursors:
 # https://github.com/tweepy/tweepy/blob/master/docs/code_snippet.rst#pagination
 
+#tweepy docs:
+# https://docs.tweepy.org/en/latest/index.html
+
 def limit_handled(cursor):
     while True:
         try:
@@ -19,7 +22,7 @@ def limit_handled(cursor):
 def get_friends(user):
     friend_ids = []
     for follower in limit_handled(tweepy.Cursor(api.friends).items()):
-        
+
 
 user = api.get_user('narendramodi')
 get_friends(user)
