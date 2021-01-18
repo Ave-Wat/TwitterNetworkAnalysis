@@ -1,12 +1,21 @@
-#ignore tweepy folder
+#ignore extra library folders
 tweepy/
+twint/
 
 #ignore venv folder
-venv/
+.env
+.venv
 env/
+venv/
+ENV/
+env.bak/
+venv.bak/
 
 #ignore tokens.py file (auth tokens)
 tokens.py
 
 #ignore
 __pycache__/
+
+#ignore
+practice.csv
