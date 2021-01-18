@@ -24,7 +24,7 @@ def get_friends(user):
     i = 0
 
     cursor = limit_handled(tweepy.Cursor(api.friends_ids, user_id = user))
-    for friend in cursor.pages()):
+    for friend in cursor.pages():
         if i < 2:
             print(friend.user_id)
         else:
