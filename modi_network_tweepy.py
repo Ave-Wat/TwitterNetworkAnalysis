@@ -22,7 +22,7 @@ def limit_handled(cursor):
 def get_friends(user):
     friend_ids = []
     i = 0
-    for friend in limit_handled(tweepy.Cursor(api.friends(user_id = user)).items()):
+    for friend in limit_handled(tweepy.Cursor(api.friends, user_id = user)).items()):
         if i < 2:
             print(friend.user_id)
         else:
