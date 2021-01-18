@@ -4,26 +4,6 @@ import numpy as np
 import xlwt
 from xlwt import Workbook
 
-'''Handling the rate limit using cursors
-Since cursors raise RateLimitErrors while iterating, handling them can be done by wrapping the cursor in an iterator.
-
-Running this snippet will print all users you follow that themselves follow less than 300 people total - to exclude obvious spambots, for example - and will wait for 15 minutes each time it hits the rate limit.
-
-# In this example, the handler is time.sleep(15 * 60),
-# but you can of course handle it in any way you want.
-
-def limit_handled(cursor):
-    while True:
-        try:
-            yield next(cursor)
-        except tweepy.RateLimitError:
-            time.sleep(15 * 60)
-
-for follower in limit_handled(tweepy.Cursor(api.followers).items()):
-    if follower.friends_count < 300:
-        print(follower.screen_name)
-'''
-
 def limit_handled(cursor):
     while True:
         try:
@@ -41,11 +21,7 @@ api = tweepy.API(auth, wait_on_rate_limit = True,wait_on_rate_limit_notify = Tru
 modi = "narendramodi"
 
 friends = api.friends(modi, count = 5, skip_status = False, include_user_entities = False)
-
-
 friends.remove(friends[6])
-
-
 
 wb = Workbook()
 
