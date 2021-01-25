@@ -19,3 +19,5 @@ __pycache__/
 
 #ignore for practice files
 practice.csv
+
+.exe
