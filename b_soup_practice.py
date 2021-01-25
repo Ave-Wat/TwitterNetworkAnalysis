@@ -16,6 +16,7 @@ options = webdriver.ChromeOptions()
 options.add_argument('--ignore-certificate-errors')
 options.add_argument('--incognito')
 options.add_argument('--headless')
+options.add_argument('--enable-javascript')
 
 driver = webdriver.Chrome(options=options)
 
@@ -52,7 +53,7 @@ def get_follower_page(username):
     url = base_url + username + "/following"
     driver.implicitly_wait(30)
     driver.get(url)
-    infinite_scroll(driver, 5)
+    #infinite_scroll(driver, 5)
     page_source = driver.page_source
     driver.close()
 
