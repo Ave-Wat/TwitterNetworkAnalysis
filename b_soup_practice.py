@@ -3,6 +3,8 @@ python3 -m venv 'name'-env
 'environment name'\Scripts\activate.bat
 pip install bs4
 pip install requests
+pip install selenium
+download appropriate driver: https://selenium-python.readthedocs.io/installation.html
 """
 
 from bs4 import BeautifulSoup
@@ -27,7 +29,31 @@ headers.update({
 
 base_url = "https://twitter.com/"
 
+class User:
+    def __init__(self, username):
+        self.username = username
+
+    def get_user_page(self):
+        url = base_url + self.username
+        response = requests.get(url, headers=headers)
+        content = BeautifulSoup(response.content, "html.parser")
+        return content
+
+    def get_followers(self):
+        url = base_url + self.username + "/following"
+        driver.implicitly_wait(30)
+        driver.get(url)
+        #infinite_scroll(driver, 5)
+        page_source = driver.page_source
+        driver.close()
+
+        content = BeautifulSoup(page_source, "html.parser")
+        #followers list is in <div class="css-1dbjc4n">...</div>
+
+        return content
+
 def infinite_scroll(driver, timeout):
+    '''questionable'''
     scroll_pause_time = timeout
     # Get scroll height
     last_height = driver.execute_script("return document.body.scrollHeight")
@@ -43,28 +69,9 @@ def infinite_scroll(driver, timeout):
             break
         last_height = new_height
 
-def get_user_page(username):
-    url = base_url + username
-    response = requests.get(url, headers=headers)
-    content = BeautifulSoup(response.content, "html.parser")
-    return content
-
-def get_follower_page(username):
-    url = base_url + username + "/following"
-    driver.implicitly_wait(30)
-    driver.get(url)
-    #infinite_scroll(driver, 5)
-    page_source = driver.page_source
-    driver.close()
-
-    content = BeautifulSoup(page_source, "html.parser")
-    #followers list is in <div class="css-1dbjc4n">...</div>
-
-    return content
-
 def main():
-    username = "narendramodi"
-    html = get_follower_page(username)
+    modi = User("narendramodi")
+    html = modi.get_followers()
 
     print(html)
 
