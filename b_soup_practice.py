@@ -38,6 +38,8 @@ class Twitterbot :
         self.driver = webdriver.Chrome(
             executable_path = os.path.join(os.getcwd(), 'chromedriver'),
             options = chrome_options)
+        self.login()
+        self.login2()
 
     def login(self):
         self.driver.implicitly_wait(25)
@@ -48,6 +50,20 @@ class Twitterbot :
         password = self.driver.find_element_by_xpath('//*[@id="react-root"]/div/div/div[2]/main/div/div/div[2]/form/div/div[2]/label/div/div[2]/div/input')
         password.send_keys(tokens.ave_pass)
         time.sleep(2)
+        self.driver.find_element_by_xpath('//*[@id="react-root"]/div/div/div[2]/main/div/div/div[2]/form/div/div[3]/div').click()
+        time.sleep(3)
+
+    def login2(self):
+        self.driver.implicitly_wait(25)
+        self.driver.get("https://twitter.com/login")
+        time.sleep(3)
+        username = self.driver.find_element_by_xpath('//*[@id="react-root"]/div/div/div[2]/main/div/div/div[2]/form/div/div[1]/label/div/div[2]/div/input')
+        username.send_keys(tokens.ave_u)
+        password = self.driver.find_element_by_xpath('//*[@id="react-root"]/div/div/div[2]/main/div/div/div[2]/form/div/div[2]/label/div/div[2]/div/input')
+        password.send_keys(tokens.ave_pass)
+        time.sleep(2)
+        self.driver.find_element_by_xpath('//*[@id="react-root"]/div/div/div[2]/main/div/div/div[2]/form/div/div[3]/div').click()
+        time.sleep(3)
 
     def infinite_scroll(self, timeout):
         '''questionable'''
@@ -66,13 +82,14 @@ class Twitterbot :
                 break
             last_height = new_height
 
-    def get_page(self, url):
+    def get_friends_container(self, url):
         self.driver.implicitly_wait(30)
         self.driver.get(url)
-        #self.bot.infinite_scroll(driver, 5)
-        page_source = self.driver.page_source
-
-        return page_source
+        time.sleep(5)
+        self.infinite_scroll(5)
+        element = self.driver.find_element_by_xpath('//*[@id="react-root"]/div/div/div[2]/main/div/div/div/div[1]/div/div[2]')
+        html = element.get_attribute('innerHTML')
+        return html
 
 class User:
     def __init__(self, username, bot):
@@ -85,18 +102,18 @@ class User:
         content = BeautifulSoup(page_source, "html.parser")
         return content
 
-    def get_followers(self):
+    def get_friends(self):
         url = base_url + self.username + "/following"
-        page_source = self.bot.get_page(url)
-        content = BeautifulSoup(page_source, "html.parser")
+        container = self.bot.get_friends_container(url)
+        content = BeautifulSoup(container, "html.parser")
         #followers list is in <div class="css-1dbjc4n">...</div>
         return content
 
 def main():
     bot = Twitterbot()
-    bot.login()
+    #bot.login()
     modi = User("narendramodi", bot)
-    html = modi.get_followers()
+    html = modi.get_friends()
 
     print(html)
 
