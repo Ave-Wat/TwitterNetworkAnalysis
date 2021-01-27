@@ -41,6 +41,9 @@ class Twitterbot :
         self.login()
         self.login2()
 
+    def close(self):
+        self.driver.close()
+
     def login(self):
         self.driver.implicitly_wait(25)
         self.driver.get("https://twitter.com/login")
@@ -114,6 +117,7 @@ def main():
     #bot.login()
     modi = User("narendramodi", bot)
     html = modi.get_friends()
+    bot.close()
 
     print(html)
 
