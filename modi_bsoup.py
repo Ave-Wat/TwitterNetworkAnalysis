@@ -117,12 +117,12 @@ class User:
         self.write_to_csv(self.username, already_seen)
         return already_seen
 
-        def write_to_csv(username, friends_list):
-            with open('usernames.csv', 'w', newline='') as file:
-                for name in friends_list:
-                    writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-                    writer.writerow([username, name])
-            file.close()
+    def write_to_csv(username, friends_list):
+        with open('usernames.csv', 'w', newline='') as file:
+            for name in friends_list:
+                writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+                writer.writerow([username, name])
+        file.close()
 
 def main():
     bot = Twitterbot()
