@@ -118,7 +118,7 @@ class User:
         return already_seen
 
     def write_to_csv(username, friends_list):
-        with open('usernames.csv', 'w', newline='') as file:
+        with open('usernames.csv', 'a+', newline='') as file:
             for name in friends_list:
                 writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
                 writer.writerow([username, name])
