@@ -125,11 +125,12 @@ class User:
             file.close()
 
 def main():
-    '''bot = Twitterbot()
+    bot = Twitterbot()
     modi = User("narendramodi", bot)
     friends_list = modi.get_friends()
     bot.close()
 
+    print(friends_list)
 
 
 if __name__ == '__main__':
