@@ -55,5 +55,10 @@ def main():
         user.get_friends()
     bot.close()
 
+'''notes:
+- assign each bot a number 1-8?
+- do it in 4 sessions; 32 sections
+'''
+
 if __name__ == '__main__':
     main()
