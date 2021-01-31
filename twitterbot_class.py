@@ -15,7 +15,7 @@ class Twitterbot:
             executable_path = os.path.join(os.getcwd(), 'chromedriver'),
             options = chrome_options)
         self.login_times = login_times
-        #self.control_login()
+        self.control_login()
 
     def control_login(self):
         if self.login_times == 1:
