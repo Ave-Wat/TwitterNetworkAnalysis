@@ -1,6 +1,7 @@
 import tweepy
 import tokens
 import time
+import csv
 
 auth = tweepy.OAuthHandler(tokens.consumer_key, tokens.consumer_secret)
 auth.set_access_token(tokens.access_token, tokens.access_token_secret)
@@ -21,9 +22,10 @@ def get_friends(user):
     #limits us at 300; have to wait 15 mins; to avoid for practice, uncomment if/break with int i
     for friend in limit_handled(tweepy.Cursor(api.friends, screen_name=user).items()):
         print(friend.screen_name)
-        # i+=1
-        # if i > 4:
-        #     break
+        with open('usernames.csv', 'a+', newline='') as file:
+            writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+            writer.writerow(['narendramodi', friend.screen_name])
+        file.close()
 
 def main():
     user = modi
