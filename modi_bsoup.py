@@ -21,13 +21,20 @@ headers = requests.utils.default_headers()
 headers.update({'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36",})
 
 class Twitterbot:
-    def __init__(self):
+    def __init__(self, login_times = 1):
         chrome_options = Options()
         self.driver = webdriver.Chrome(
             executable_path = os.path.join(os.getcwd(), 'chromedriver'),
             options = chrome_options)
-        self.login(tokens.ave_m, tokens.ave_pass)
-        #self.login(tokens.ave_u, tokens.ave_pass)
+        self.login_times = login_times
+        self.control_login()
+
+    def control_login(self):
+        if self.login_times == 1:
+            self.login(tokens.ave_m, tokens.ave_pass)
+        else:
+            self.login(tokens.ave_m, tokens.ave_pass)
+            self.login(tokens.ave_u, tokens.ave_pass)
 
     def close(self):
         self.driver.close()
@@ -136,19 +143,18 @@ def make_modi_friends_list(bot):
         mycsv = csv.reader(file)
         for row in mycsv:
             modi_friends.append(User(row[1], bot))
-            print(row[1])
     file.close()
     return modi_friends
 
 def main():
-    bot = Twitterbot()
+    bot = Twitterbot(login_times = 2)
     modi_friends = make_modi_friends_list(bot)
     i = 0
     for user in modi_friends:
         if i == 1:
             break
         i = i + 1
-        #user.get_friends()
+        user.get_friends()
     bot.close()
 
 if __name__ == '__main__':
