@@ -9,13 +9,17 @@ import tokens
 import random
 
 class Twitterbot:
-    def __init__(self, login_times = 1):
+    def __init__(self, bot_number, login_times = 1):
         chrome_options = Options()
         self.driver = webdriver.Chrome(
             executable_path = os.path.join(os.getcwd(), 'chromedriver'),
             options = chrome_options)
         self.login_times = login_times
+        self.bot_number = bot_number
         self.control_login()
+
+    def get_bot_number(self):
+        return self.bot_number
 
     def control_login(self):
         if self.login_times == 1:

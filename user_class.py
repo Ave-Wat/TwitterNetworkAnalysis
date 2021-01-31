@@ -34,7 +34,7 @@ class User:
         for line in usernames_list:
             friends_list.append(line.get('href')[1:])
 
-        friends_list = remove_duplicates(friends_list)
+        friends_list = self.remove_duplicates(friends_list)
         self.write_to_csv(self.username, friends_list)
 
         return friends_list
@@ -47,7 +47,8 @@ class User:
         return already_seen
 
     def write_to_csv(self, username, friends_list):
-        with open('usernames.csv', 'a+', newline='') as file:
+        filename = 'data/usernames' + str(self.bot.get_bot_number()) + '.csv'
+        with open(filename, 'a+', newline='') as file:
             for name in friends_list:
                 writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
                 writer.writerow([username, name])
