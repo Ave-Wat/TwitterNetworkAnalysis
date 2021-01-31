@@ -137,23 +137,36 @@ class User:
                 writer.writerow([username, name])
         file.close()
 
-def make_modi_friends_list(bot):
+def get_modi_friends_list():
     modi_friends = []
     with open("modi_friends.csv", "rt", encoding="utf8") as file:
         mycsv = csv.reader(file)
         for row in mycsv:
-            modi_friends.append(User(row[1], bot))
+            modi_friends.append(row[1])
     file.close()
     return modi_friends
 
+def get_friend_list_section(friends_list, list_section_num, divide_list_by = 32):
+    '''list_section_num is the section of list you want, from 0 to 1 less than divide_list_by'''
+
+    section_len = len(friends_list)/divide_list_by
+    slice_int_1 = int(section_len * list_section_num)
+    slice_int_2 = int(section_len * (list_section_num + 1))
+    return friends_list[slice_int_1:slice_int_2]
+
+def make_user_list(list, bot):
+    user_list = []
+    for name in list:
+        user_list.append(User(name, bot))
+    return user_list
+
 def main():
     bot = Twitterbot(login_times = 2)
-    modi_friends = make_modi_friends_list(bot)
-    i = 0
-    for user in modi_friends:
-        if i == 1:
-            break
-        i = i + 1
+    modi_friends = get_modi_friends_list()
+    section_friends = get_friend_list_section(modi_friends, 0)
+    print(section_friends)
+    make_user_list(section_friends, bot)
+    for user in section_friends:
         user.get_friends()
     bot.close()
 
