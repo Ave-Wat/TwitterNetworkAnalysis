@@ -132,10 +132,12 @@ class User:
 
 def make_modi_friends_list(bot):
     modi_friends = []
-    with open("modi_friends.csv", 'r') as file:
-        for row in file:
+    with open("modi_friends.csv", "rt", encoding="utf8") as file:
+        mycsv = csv.reader(file)
+        for row in mycsv:
             modi_friends.append(User(row[1], bot))
             print(row[1])
+    file.close()
     return modi_friends
 
 def main():
@@ -143,10 +145,10 @@ def main():
     modi_friends = make_modi_friends_list(bot)
     i = 0
     for user in modi_friends:
-        if i = 1:
+        if i == 1:
             break
-        i ++
-        user.get_friends()
+        i = i + 1
+        #user.get_friends()
     bot.close()
 
 if __name__ == '__main__':
