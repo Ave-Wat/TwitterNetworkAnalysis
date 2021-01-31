@@ -52,8 +52,7 @@ def main():
     print(section_friends)
     make_user_list(section_friends, bot)
     for user in section_friends:
-        pass
-        #user.get_friends()
+        user.get_friends()
     bot.close()
 
 if __name__ == '__main__':
