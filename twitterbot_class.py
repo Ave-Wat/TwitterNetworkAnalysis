@@ -24,10 +24,10 @@ class Twitterbot:
     def control_login(self):
         password, email, username = tokens.get_creds()
         if self.login_times == 1:
-            self.login(email, password)
-        else:
-            self.login(email, password)
             self.login(username, password)
+        else:
+            self.login(username, password)
+            self.login(email, password)
 
     def close(self):
         self.driver.close()
