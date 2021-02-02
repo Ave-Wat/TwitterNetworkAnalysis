@@ -48,6 +48,7 @@ class Twitterbot:
         last_height = self.driver.execute_script("return document.body.scrollHeight")
         html = ""
 
+        i = 0
         while True:
             html = html + self.driver.page_source
 
@@ -62,6 +63,9 @@ class Twitterbot:
                 break
                 time.sleep(10)
             last_height = new_height
+            i = i + 1
+            if i > 100:
+                break
 
         return html
 
