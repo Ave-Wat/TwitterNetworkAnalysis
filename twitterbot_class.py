@@ -59,13 +59,8 @@ class Twitterbot:
             new_height = self.driver.execute_script("return document.body.scrollHeight")
             if new_height == last_height:
                 # If heights are the same it will exit the function
-                exit = input("Stop scrolling? (y/n): ")
-                if exit == 'y':
-                    break
-                elif exit == 'n':
-                    time.sleep(20)
-                else:
-                    time.sleep(10)
+                break
+                time.sleep(10)
             last_height = new_height
 
         self.hard_reload()
