@@ -1,11 +1,11 @@
 progress
 
-bot#:how many users scraped
-1
-2
-3
-4:7
-5:6
-6
-7
-8
+             bot#:how many users scraped
+ave-personal    1:8
+MA2             2
+bas-personal    3
+MA              4:7
+MA3             5:6
+MA5             6
+teagan-personal 7
+MA4             8
