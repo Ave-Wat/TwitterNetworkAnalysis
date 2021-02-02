@@ -63,8 +63,6 @@ class Twitterbot:
                 time.sleep(10)
             last_height = new_height
 
-        self.hard_reload()
-
         return html
 
     def hard_reload(self):
@@ -76,6 +74,7 @@ class Twitterbot:
         self.driver.get(url)
         time.sleep(5)
         html = self.infinite_scroll_scrape()
+        self.hard_reload()
         return html
 
     def get_page(self, url):
