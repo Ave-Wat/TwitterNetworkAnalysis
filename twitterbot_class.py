@@ -64,7 +64,7 @@ class Twitterbot:
                 time.sleep(10)
             last_height = new_height
             i = i + 1
-            if i > 100:
+            if i > 500:
                 break
 
         return html
