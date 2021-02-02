@@ -48,7 +48,7 @@ def make_user_list(list, bot):
 def main():
     bot = Twitterbot(tokens.bot_num, login_times = 2)
     modi_friends = get_modi_friends_list()
-    section_friends = get_friend_list_section(modi_friends, 0)
+    section_friends = get_friend_list_section(modi_friends, (bot.get_bot_number() - 1))
     print(section_friends)
     users = make_user_list(section_friends, bot)
     for user in users:
