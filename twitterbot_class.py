@@ -73,7 +73,7 @@ class Twitterbot:
         try:
             self.driver.execute_script("location.reload(true);")
             time.sleep(5)
-        except TimeoutException as ex:
+        except Exception as ex:
             print("timeout exception thrown")
             hard_reload()
 
@@ -82,7 +82,6 @@ class Twitterbot:
         self.driver.get(url)
         time.sleep(5)
         html = self.infinite_scroll_scrape()
-        self.hard_reload()
         return html
 
     def get_page(self, url):
