@@ -48,6 +48,7 @@ class Twitterbot:
         last_height = self.driver.execute_script("return document.body.scrollHeight")
         html = ""
 
+        i = 0
         while True:
             html = html + self.driver.page_source
 
@@ -62,6 +63,9 @@ class Twitterbot:
                 break
                 time.sleep(10)
             last_height = new_height
+            i = i + 1
+            if i > 500:
+                break
 
         return html
 
@@ -69,7 +73,7 @@ class Twitterbot:
         try:
             self.driver.execute_script("location.reload(true);")
             time.sleep(5)
-        except TimeoutException as ex:
+        except Exception as ex:
             print("timeout exception thrown")
             hard_reload()
 
@@ -78,7 +82,6 @@ class Twitterbot:
         self.driver.get(url)
         time.sleep(5)
         html = self.infinite_scroll_scrape()
-        self.hard_reload()
         return html
 
     def get_page(self, url):
