@@ -36,7 +36,7 @@ class User:
 
         friends_list = self.remove_duplicates(friends_list)
         self.write_to_csv(self.username, friends_list)
-        self.bot.hard_reload()
+        #self.bot.hard_reload()
         return friends_list
 
     def remove_duplicates(self, list):
