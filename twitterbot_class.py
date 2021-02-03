@@ -53,7 +53,8 @@ class Twitterbot:
             html = html + self.driver.page_source
 
             self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-            scroll_pause_time = random.randint(4, 10)
+            scroll_pause_time = random.randint(6, 9)
+            scroll_pause_time = scroll_pause_time / 10
             time.sleep(scroll_pause_time)
 
             # Calculate new scroll height and compare with last scroll height
