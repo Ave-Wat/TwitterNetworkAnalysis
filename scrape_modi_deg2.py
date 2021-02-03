@@ -46,20 +46,25 @@ def make_user_list(list, bot):
         user_list.append(User(name, bot))
     return user_list
 
-bot = Twitterbot(tokens.bot_num, login_times = 1)
-modi_friends = get_modi_friends_list()
-section_friends = get_friend_list_section(modi_friends, (bot.get_bot_number() - 1))
-print(section_friends)
-users = make_user_list(section_friends, bot)[2:]
+def getFriendsRecursive(users):
+    user = users[0]
+    print("User: ", user)
+    print(len(users))
+    if len(users) == 0:
+        return __
+    try:
+        user.get_friends()
+        getFriendsRecursive(users[1:])
+    except Exception:
+        getFriendsRecursive(users[1:])
 
-def main(users):
-    for user in tqdm(users):
-        currUserIndex = users.index(user)
-        try:
-            user.get_friends()
-        except Exception:
-            print("THIS WORKED!")
-            main(users[currUserIndex:])
+def main():
+    bot = Twitterbot(tokens.bot_num, login_times = 1)
+    modi_friends = get_modi_friends_list()
+    section_friends = get_friend_list_section(modi_friends, (bot.get_bot_number() - 1))
+    print(section_friends)
+    users = make_user_list(section_friends, bot)[1:]
+    getFriendsRecursive(users)
     bot.close()
 
 '''notes:
