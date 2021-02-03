@@ -48,7 +48,7 @@ def make_user_list(list, bot):
 
 def getFriendsRecursive(users):
     user = users[0]
-    print("User: ", user)
+    print("User: ", user.username)
     print(len(users))
     if len(users) == 0:
         return __
@@ -63,7 +63,7 @@ def main():
     modi_friends = get_modi_friends_list()
     section_friends = get_friend_list_section(modi_friends, (bot.get_bot_number() - 1))
     print(section_friends)
-    users = make_user_list(section_friends, bot)[6:]
+    users = make_user_list(section_friends, bot)[12:]
     getFriendsRecursive(users)
     bot.close()
 
