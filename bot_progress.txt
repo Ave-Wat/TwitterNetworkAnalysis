@@ -4,7 +4,7 @@ progress
 ave-personal    1:8
 MA2             2:0
 bas-personal    3:0
-MA              4:7
+MA1             4:7
 MA3             5:6
 MA5             6:3
 teagan-personal 7:0
