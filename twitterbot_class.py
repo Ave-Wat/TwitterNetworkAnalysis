@@ -70,7 +70,7 @@ class Twitterbot:
             self.driver.execute_script("location.reload(true);")
             time.sleep(5)
         except TimeoutException as ex:
-            print(timeout exception thrown)
+            print("timeout exception thrown")
             hard_reload()
 
     def get_friends_html(self, url):

@@ -18,6 +18,7 @@ import tokens
 import random
 from twitterbot_class import Twitterbot
 from user_class import User
+from tqdm import tqdm
 
 headers = requests.utils.default_headers()
 headers.update({'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36",})
@@ -45,14 +46,20 @@ def make_user_list(list, bot):
         user_list.append(User(name, bot))
     return user_list
 
-def main():
-    bot = Twitterbot(tokens.bot_num, login_times = 1)
-    modi_friends = get_modi_friends_list()
-    section_friends = get_friend_list_section(modi_friends, (bot.get_bot_number() - 1))
-    print(section_friends)
-    users = make_user_list(section_friends, bot)
-    for user in users:
-        user.get_friends()
+bot = Twitterbot(tokens.bot_num, login_times = 1)
+modi_friends = get_modi_friends_list()
+section_friends = get_friend_list_section(modi_friends, (bot.get_bot_number() - 1))
+print(section_friends)
+users = make_user_list(section_friends, bot)[2:]
+
+def main(users):
+    for user in tqdm(users):
+        currUserIndex = users.index(user)
+        try:
+            user.get_friends()
+        except Exception:
+            print("THIS WORKED!")
+            main(users[currUserIndex:])
     bot.close()
 
 '''notes:
@@ -61,4 +68,4 @@ def main():
 '''
 
 if __name__ == '__main__':
-    main()
+    main(users)
