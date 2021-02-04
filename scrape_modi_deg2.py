@@ -64,7 +64,7 @@ def main():
     section_friends = get_friend_list_section(modi_friends, (bot.get_bot_number() - 1))
     print(section_friends)
     users = make_user_list(section_friends, bot)
-    for user in users[15:]:
+    for user in users[21:]:
         user.get_friends()
         print(users.index(user))
     bot.close()

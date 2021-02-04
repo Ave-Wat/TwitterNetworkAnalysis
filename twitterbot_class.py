@@ -58,6 +58,7 @@ class Twitterbot:
         while True:
             html = html + self.driver.page_source
 
+            self.driver.set_script_timeout(30)
             self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
             scroll_pause_time = random.randint(11, 15)
             scroll_pause_time = scroll_pause_time / 10
@@ -86,7 +87,10 @@ class Twitterbot:
 
     def get_url(self, url):
         self.driver.set_page_load_timeout(10)
-        self.driver.get(url)
+        try:
+            self.driver.get(url)
+        except Exception:
+            self.get_url()
 
     def get_friends_html(self, url):
         self.driver.implicitly_wait(30)
