@@ -7,19 +7,28 @@ import csv
 import time, os
 import tokens
 import random
+import multiprocessing
+
 
 class Twitterbot:
     def __init__(self, bot_number, login_times = 1):
-        chrome_options = Options()
-        self.driver = webdriver.Chrome(
-            executable_path = os.path.join(os.getcwd(), 'chromedriver'),
-            options = chrome_options)
+        self.driver = self.make_new_driver()
         self.login_times = login_times
         self.bot_number = bot_number
         self.control_login()
 
+    def make_new_driver(self):
+        chrome_options = Options()
+        driver = webdriver.Chrome(
+            executable_path = os.path.join(os.getcwd(), 'chromedriver'),
+            options = chrome_options)
+        return driver
+
     def get_bot_number(self):
         return self.bot_number
+
+    def close(self):
+        self.driver.close()
 
     def control_login(self):
         password, email, username = tokens.get_creds()
@@ -28,9 +37,6 @@ class Twitterbot:
         else:
             self.login(username, password)
             self.login(email, password)
-
-    def close(self):
-        self.driver.close()
 
     def login(self, field1, field2):
         self.driver.implicitly_wait(25)
@@ -52,6 +58,7 @@ class Twitterbot:
         while True:
             html = html + self.driver.page_source
 
+            self.driver.set_script_timeout(30)
             self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
             scroll_pause_time = random.randint(8, 12)
             scroll_pause_time = scroll_pause_time / 10
@@ -78,9 +85,16 @@ class Twitterbot:
             print("timeout exception thrown")
             hard_reload()
 
+    def get_url(self, url):
+        self.driver.set_page_load_timeout(10)
+        try:
+            self.driver.get(url)
+        except Exception:
+            self.get_url()
+
     def get_friends_html(self, url):
         self.driver.implicitly_wait(30)
-        self.driver.get(url)
+        self.get_url(url)
         time.sleep(5)
         html = self.infinite_scroll_scrape()
         return html
