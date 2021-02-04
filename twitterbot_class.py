@@ -53,7 +53,7 @@ class Twitterbot:
             html = html + self.driver.page_source
 
             self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-            scroll_pause_time = random.randint(11, 15)
+            scroll_pause_time = random.randint(8, 12)
             scroll_pause_time = scroll_pause_time / 10
             time.sleep(scroll_pause_time)
 
