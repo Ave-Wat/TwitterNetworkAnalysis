@@ -58,9 +58,13 @@ class Twitterbot:
         while True:
             html = html + self.driver.page_source
 
-            self.driver.set_script_timeout(30)
-            self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-            scroll_pause_time = random.randint(8, 12)
+            self.driver.set_script_timeout(60)
+
+            try:
+                self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+            except Exception:
+                break
+            scroll_pause_time = random.randint(11, 15)
             scroll_pause_time = scroll_pause_time / 10
             time.sleep(scroll_pause_time)
 
@@ -86,11 +90,13 @@ class Twitterbot:
             hard_reload()
 
     def get_url(self, url):
-        self.driver.set_page_load_timeout(10)
+        self.driver.set_page_load_timeout(30)
         try:
             self.driver.get(url)
         except Exception:
-            self.get_url()
+            self.driver = self.make_new_driver()
+            self.control_login()
+            self.get_url(url)
 
     def get_friends_html(self, url):
         self.driver.implicitly_wait(30)
