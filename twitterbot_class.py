@@ -7,16 +7,17 @@ import csv
 import time, os
 import tokens
 import random
+import multiprocessing
 
 
 class Twitterbot:
     def __init__(self, bot_number, login_times = 1):
-        self.driver = make_new_driver()
+        self.driver = self.make_new_driver()
         self.login_times = login_times
         self.bot_number = bot_number
         self.control_login()
 
-    def make_new_driver():
+    def make_new_driver(self):
         chrome_options = Options()
         driver = webdriver.Chrome(
             executable_path = os.path.join(os.getcwd(), 'chromedriver'),
@@ -83,23 +84,13 @@ class Twitterbot:
             print("timeout exception thrown")
             hard_reload()
 
-    def get_url(url):
+    def get_url(self, url):
+        self.driver.set_page_load_timeout(10)
         self.driver.get(url)
-
-    def run_url(url):
-        p = Process(target=get_url, args(url))
-        p.start()
-        p.join(30)
-        if p.is_alive():
-            p.kill()
-            self.driver = make_new_driver()
-            self.control_login()
-            time.sleep(5)
-            run_url()
 
     def get_friends_html(self, url):
         self.driver.implicitly_wait(30)
-        self.run_url(url)
+        self.get_url(url)
         time.sleep(5)
         html = self.infinite_scroll_scrape()
         return html

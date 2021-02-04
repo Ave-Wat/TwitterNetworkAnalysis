@@ -64,7 +64,9 @@ def main():
     section_friends = get_friend_list_section(modi_friends, (bot.get_bot_number() - 1))
     print(section_friends)
     users = make_user_list(section_friends, bot)
-    getFriendsRecursive(users)
+    for user in users[15:]:
+        user.get_friends()
+        print(users.index(user))
     bot.close()
 
 '''notes:
