@@ -86,6 +86,7 @@ class Twitterbot:
             self.driver.set_script_timeout(60)
             self.driver.execute_script("location.reload(true);")
         except Exception:
+            self.close()
             self.driver = self.make_new_driver()
             self.control_login()
 
@@ -94,6 +95,7 @@ class Twitterbot:
         try:
             self.driver.get(url)
         except Exception:
+            self.close()
             self.driver = self.make_new_driver()
             self.control_login()
             self.get_url(url)
