@@ -8,18 +8,26 @@ import time, os
 import tokens
 import random
 
+
 class Twitterbot:
     def __init__(self, bot_number, login_times = 1):
-        chrome_options = Options()
-        self.driver = webdriver.Chrome(
-            executable_path = os.path.join(os.getcwd(), 'chromedriver'),
-            options = chrome_options)
+        self.driver = make_new_driver()
         self.login_times = login_times
         self.bot_number = bot_number
         self.control_login()
 
+    def make_new_driver():
+        chrome_options = Options()
+        driver = webdriver.Chrome(
+            executable_path = os.path.join(os.getcwd(), 'chromedriver'),
+            options = chrome_options)
+        return driver
+
     def get_bot_number(self):
         return self.bot_number
+
+    def close(self):
+        self.driver.close()
 
     def control_login(self):
         password, email, username = tokens.get_creds()
@@ -28,9 +36,6 @@ class Twitterbot:
         else:
             self.login(username, password)
             self.login(email, password)
-
-    def close(self):
-        self.driver.close()
 
     def login(self, field1, field2):
         self.driver.implicitly_wait(25)
@@ -78,9 +83,23 @@ class Twitterbot:
             print("timeout exception thrown")
             hard_reload()
 
+    def get_url(url):
+        self.driver.get(url)
+
+    def run_url(url):
+        p = Process(target=get_url, args(url))
+        p.start()
+        p.join(30)
+        if p.is_alive():
+            p.kill()
+            self.driver = make_new_driver()
+            self.control_login()
+            time.sleep(5)
+            run_url()
+
     def get_friends_html(self, url):
         self.driver.implicitly_wait(30)
-        self.driver.get(url)
+        self.run_url(url)
         time.sleep(5)
         html = self.infinite_scroll_scrape()
         return html
