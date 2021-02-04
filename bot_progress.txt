@@ -1,7 +1,7 @@
 progress
 
              bot#:how many users scraped
-ave-personal    1:8
+ave-personal    1:23
 MA2             2:0
 bas-personal    3:50
 MA1             4:7

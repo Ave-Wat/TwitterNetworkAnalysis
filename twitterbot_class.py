@@ -83,11 +83,11 @@ class Twitterbot:
 
     def hard_reload(self):
         try:
+            self.driver.set_script_timeout(60)
             self.driver.execute_script("location.reload(true);")
-            time.sleep(5)
-        except Exception as ex:
-            print("timeout exception thrown")
-            hard_reload()
+        except Exception:
+            self.driver = self.make_new_driver()
+            self.control_login()
 
     def get_url(self, url):
         self.driver.set_page_load_timeout(30)
