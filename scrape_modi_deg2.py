@@ -66,7 +66,7 @@ def main():
     users = make_user_list(section_friends, bot)
     for user in users[24:]:
         user.get_friends()
-        print("user index: " + users.index(user))
+        print("user index: " + str(users.index(user)))
     bot.close()
 
 '''notes:
