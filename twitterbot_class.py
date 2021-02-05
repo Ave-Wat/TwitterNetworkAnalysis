@@ -15,7 +15,6 @@ class Twitterbot:
         self.driver = self.make_new_driver()
         self.login_times = login_times
         self.bot_number = bot_number
-        self.driver.set_window_size(680, 720)
         self.control_login()
 
     def make_new_driver(self):
@@ -23,6 +22,7 @@ class Twitterbot:
         driver = webdriver.Chrome(
             executable_path = os.path.join(os.getcwd(), 'chromedriver'),
             options = chrome_options)
+        driver.set_window_size(680, 720)
         return driver
 
     def get_bot_number(self):
