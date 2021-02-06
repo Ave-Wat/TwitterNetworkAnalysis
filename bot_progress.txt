@@ -10,7 +10,7 @@ MA5             6:complete
 teagan-personal 7:complete
 MA4             8:25
 ave-personal    9:complete
-MA2             10:
+MA2             10:44
 BAS-personal    11:48
 MA1             12:17
 MA3             13:
