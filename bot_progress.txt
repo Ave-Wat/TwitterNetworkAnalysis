@@ -5,8 +5,9 @@ ave-personal    1:complete
 MA2             2:0
 bas-personal    3:50
 MA1             4:7
-MA3             5:6
+MAnalyzer3      5:complete
 MA5             6:3
 teagan-personal 7:0
 MA4             8:3
 ave-personal    9:complete
+MAnalyzer3      13:10
