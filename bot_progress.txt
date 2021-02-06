@@ -2,12 +2,19 @@ progress
 
              bot#:how many users scraped
 ave-personal    1:complete
-MA2             2:0
-bas-personal    3:50
-MA1             4:7
-MAnalyzer3      5:complete
-MA5             6:3
-teagan-personal 7:0
+MA2             2:complete
+bas-personal    3:complete
+MA1             4:complete
+MA3             5:complete
+MA5             6:complete
+teagan-personal 7:complete
 MA4             8:3
 ave-personal    9:complete
-MAnalyzer3      13:10
+MA2             10:
+BAS-personal    11:
+MA1             12:
+MA3             13:10
+MA5             14:
+Teagan-personal 15:
+MA4             16:
+ave-personal    17:0
