@@ -17,4 +17,4 @@ MA3             13:
 MA5             14:
 Teagan-personal 15:
 MA4             16:
-ave-personal    17:0
+ave-personal    17:38
