@@ -64,7 +64,23 @@ def main():
     section_friends = get_friend_list_section(modi_friends, (bot.get_bot_number() - 1))
     print(section_friends)
     users = make_user_list(section_friends, bot)
+<<<<<<< HEAD
     for user in users[69:]:
+=======
+<<<<<<< HEAD
+    for user in users[:]:
+=======
+<<<<<<< HEAD
+    for user in users[60:]:
+=======
+<<<<<<< HEAD
+    for user in users[63:]:
+=======
+    for user in users[70:]:
+>>>>>>> c18bc1c7eabcc8b2d965fca5c9d1790deddf91fc
+>>>>>>> b1c77791ce4f87915726a88354e6f83a2751c867
+>>>>>>> 41012d81313c1d5c1a836b27895c17c0c4cf783d
+>>>>>>> 1488eb63403e6a575662f84aaa009288eff59238
         user.get_friends()
         print("user index: " + str(users.index(user)))
     bot.close()
