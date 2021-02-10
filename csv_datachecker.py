@@ -22,8 +22,7 @@ def get_friend_list_section(friends_list, list_section_num, divide_list_by = 32)
 
 def check_bot_completions():
     modi_friends = get_modi_friends_list()
-    for bot_num in range(33):
-        complete = ""
+    for bot_num in range(1,33):
         bot_csv = "data/usernames{}.csv".format(bot_num)
         bot_scraping_list = get_friend_list_section(modi_friends, bot_num-1)
         with open(bot_csv, 'r', encoding='utf-8') as bot_completed:
@@ -31,9 +30,11 @@ def check_bot_completions():
             if bot_scraping_list[-1] == last_acc_scraped:
                 print("Bot {} complete".format(bot_num))
             else:
-                for i in range(bot_scraping_list.length, -1, -1):
+                for i in range(len(bot_scraping_list)-1, -1, -1):
                     if last_acc_scraped == bot_scraping_list[i]:
                         print("Bot {} incomplete: last index {}".format(bot_num, i))
+                        print(bot_scraping_list)
+                        print("-----------------------------")
     return
 
 def main():
