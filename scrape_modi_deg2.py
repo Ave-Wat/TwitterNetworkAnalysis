@@ -1,6 +1,6 @@
 """
 python3 -m venv 'name'-env
-'environment name'\Scripts\activate.bat
+'environment name'/Scripts/activate.bat
 pip install bs4
 pip install requests
 pip install selenium
@@ -64,7 +64,11 @@ def main():
     section_friends = get_friend_list_section(modi_friends, (bot.get_bot_number() - 1))
     print(section_friends)
     users = make_user_list(section_friends, bot)
+<<<<<<< HEAD
     for user in users[32:]:
+=======
+    for user in users[67:]:
+>>>>>>> 58f11d3d9edaf50850943d36f72deac94954163d
         user.get_friends()
         print("user index: " + str(users.index(user)))
     bot.close()
