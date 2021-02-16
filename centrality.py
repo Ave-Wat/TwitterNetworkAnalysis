@@ -15,11 +15,13 @@ def get_centrality(graph, centrality_measure, num_nodes):
         centrality_dict = nx.harmonic_centrality(graph)
     elif centrality_measure == "percolation":
         centrality_dict = nx.percolation_centrality(graph)
+    elif centrality_measure == "degree":
+        centrality_dict = nx.degree_centrality(graph)
     most_central_nodes = []
     i = 0
     for node in centrality_dict:
         i += 1
-        if i >= num_nodes:
+        if i >= num_nodes:  '''NEED TO SORT LIST''''
             break
         most_central_nodes.append(node)
     return most_central_nodes
