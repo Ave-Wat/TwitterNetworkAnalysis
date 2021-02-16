@@ -18,7 +18,7 @@ def get_centrality(graph, centrality_measure, num_nodes):
     elif centrality_measure == "percolation":
         centrality_dict = nx.percolation_centrality(graph)
     elif centrality_measure == "degree":
-        centrality_dict = nx.degree_centrality(graph)
+        centrality_dict = nx.in_degree_centrality(graph)
     else:
         print("Invalid centrality measure")
         exit(0)
@@ -32,6 +32,7 @@ def load_graph(graph_source):
     with open(graph_source, 'r', newline='') as gfile:
         reader = csv.reader(gfile, delimiter=',', quotechar='"')
         edges = []
+        next(reader)
         for row in reader:
             edge = (row[0], row[1])
             edges.append(edge)
@@ -48,11 +49,13 @@ def create_graph_from_dataset(node_list, start_graph, destination_file):
         reader = csv.reader(src, delimiter=',', quotechar='"')
         with open(destination_file, 'w', newline='') as dest:
             writer = csv.writer(dest, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+            writer.writerow(next(reader))
             for row in reader:
                 if row[0] in node_list and row[1] in node_list:
                     writer.writerow(row)
         dest.close()
     src.close()
+    return
 
 def main():
     '''USAGE: python3 centrality.py graph_source centrality_measure,
