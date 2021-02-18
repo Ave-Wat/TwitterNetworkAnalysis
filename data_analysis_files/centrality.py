@@ -64,8 +64,8 @@ def main():
     graph_source = sys.argv[1]
     centrality_measure = sys.argv[2]
     graph = load_graph(graph_source)
-    new_graph_size = 25000 #1,000 5,000 10,000 25,000 50,000 #how of the most central nodes to include in new graph
-    dest_file = "data/{}{}.csv".format(centrality_measure, new_graph_size)
+    new_graph_size = 5000 #1,000 5,000 10,000 25,000 50,000 #how of the most central nodes to include in new graph
+    dest_file = "../data/{}{}.csv".format(centrality_measure, new_graph_size)
     central_nodes = get_centrality(graph, centrality_measure, new_graph_size)
     create_graph_from_dataset(central_nodes, graph_source, dest_file)
     exit(0)
