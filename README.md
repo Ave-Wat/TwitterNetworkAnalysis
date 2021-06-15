@@ -1,6 +1,6 @@
 # TwitterNetworkAnalysis
 
-![alt text](https://github.com/johnsont4/TwitterNetworkAnalysis/blob/main/Screen Shot 2021-04-22 at 9.25.09 PM.png?raw=true)
+![alt text](https://github.com/johnsont4/TwitterNetworkAnalysis/blob/main/visualization.png?raw=true)
 
 This project examines how populists target their constituencies on social media. Social media is an especially important medium for populists to reach their audiences because of their rejection of traditional media. However, the horizontal nature of social media makes it difficult to partition one's message to appeal to different audiences. This research seeks to determine how populists are coping with this difficulty. Do they primarily target online constituencies by constructing one community through vague messaging or do they appeal to the specific, individualized grievances of multiple insulated communities? We used Indian Prime Minister Narendra Modi as a case study, studying the structure and composition of his constituencies through a social network analysis of his Twitter network. 
 
